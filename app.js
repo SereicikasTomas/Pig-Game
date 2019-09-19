@@ -23,5 +23,9 @@ document.querySelector(".btn-roll").addEventListener("click", () => {
     roundScore = 0;
     document.querySelector(`#current-${activePlayer}`).textContent = roundScore;
     activePlayer = activePlayer === 0 ? 1 : 0;
+    document.querySelector(`.player-0-panel`).classList.toggle("active");
+    document.querySelector(`.player-1-panel`).classList.toggle("active");
+
+    diceDOM.style.display = "none";
   }
 });
