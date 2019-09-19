@@ -16,8 +16,12 @@ document.querySelector(".btn-roll").addEventListener("click", () => {
   diceDOM.style.display = "block";
   diceDOM.src = `dice-${dice}.png`;
 
-  if (dice === 1) {
-    activePlayer = 1;
+  if (dice !== 1) {
+    roundScore += dice;
+    document.querySelector(`#current-${activePlayer}`).textContent = roundScore;
+  } else {
+    roundScore = 0;
+    document.querySelector(`#current-${activePlayer}`).textContent = roundScore;
+    activePlayer = activePlayer === 0 ? 1 : 0;
   }
-  console.log(dice);
 });
