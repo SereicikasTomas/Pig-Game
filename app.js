@@ -1,13 +1,6 @@
-let scores = [0, 0];
-let roundScore = 0;
-let activePlayer = 0;
+let scores, roundScore, activePlayer;
 
-document.querySelector(".dice").style.display = "none";
-
-document.getElementById("score-0").textContent = "0";
-document.getElementById("score-1").textContent = "0";
-document.getElementById("current-0").textContent = "0";
-document.getElementById("current-0").textContent = "0";
+initGame();
 
 document.querySelector(".btn-roll").addEventListener("click", () => {
   let dice = Math.ceil(Math.random() * 6);
@@ -50,4 +43,28 @@ function nextPlayer() {
   document.querySelector(`.player-0-panel`).classList.toggle("active");
   document.querySelector(`.player-1-panel`).classList.toggle("active");
   document.querySelector(".dice").style.display = "none";
+}
+
+document.querySelector(".btn-new").addEventListener("click", initGame);
+
+function initGame() {
+  scores = [0, 0];
+  activePlayer = 0;
+  roundScore = 0;
+
+  document.querySelector(".dice").style.display = "none";
+
+  document.getElementById("score-0").textContent = "0";
+  document.getElementById("score-1").textContent = "0";
+  document.getElementById("current-0").textContent = "0";
+  document.getElementById("current-1").textContent = "0";
+  document.querySelector("#name-0").textContent = "Player 1";
+  document.querySelector("#name-1").textContent = "Player 2";
+
+  document.querySelector(`.player-0-panel`).classList.remove("winner");
+  document.querySelector(`.player-1-panel`).classList.remove("winner");
+
+  document.querySelector(`.player-0-panel`).classList.remove("active");
+  document.querySelector(`.player-1-panel`).classList.remove("active");
+  document.querySelector(`.player-0-panel`).classList.add("active");
 }
