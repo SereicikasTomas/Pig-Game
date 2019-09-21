@@ -2,14 +2,19 @@ let scores, roundScore, activePlayer, gamePlaying;
 
 initGame();
 
+// Roll the dice
+
 document.querySelector(".btn-roll").addEventListener("click", () => {
   if (gamePlaying) {
+    // Get random number
     let dice = Math.ceil(Math.random() * 6);
 
+    // Display random number ass dice
     let diceDOM = document.querySelector(".dice");
     diceDOM.style.display = "block";
     diceDOM.src = `dice-${dice}.png`;
 
+    // Check if dice is not 1 and add round score
     if (dice !== 1) {
       roundScore += dice;
       document.querySelector(
@@ -21,12 +26,14 @@ document.querySelector(".btn-roll").addEventListener("click", () => {
   }
 });
 
+// Add round score to player score
 document.querySelector(".btn-hold").addEventListener("click", () => {
   if (gamePlaying) {
     scores[activePlayer] += roundScore;
     document.querySelector(`#score-${activePlayer}`).textContent =
       scores[activePlayer];
 
+    //Check if any of the players won
     if (scores[activePlayer] >= 100) {
       document.querySelector(`#name-${activePlayer}`).textContent = "Winner";
       document.querySelector(".dice").style.display = "none";
@@ -44,6 +51,7 @@ document.querySelector(".btn-hold").addEventListener("click", () => {
   }
 });
 
+// Toggle next player logic
 function nextPlayer() {
   roundScore = 0;
   document.querySelector(`#current-${activePlayer}`).textContent = roundScore;
@@ -55,6 +63,7 @@ function nextPlayer() {
 
 document.querySelector(".btn-new").addEventListener("click", initGame);
 
+// Logic to initialize game
 function initGame() {
   scores = [0, 0];
   activePlayer = 0;
